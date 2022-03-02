@@ -1,13 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { firestore } from "../../firebase";
 
-function Home(props) {
+function Home({ userObject }) {
   const [twitt, setTwitt] = useState("");
+  const [getTwitt, setGetTwitt] = useState([]);
+
+  // const getTwitts = async () => {
+  //   const twitts = await firestore.collection("twitts").get();
+  //   // console.log(twitts);
+  //   twitts.forEach((item) => {
+  //     const twittObject = {
+  //       ...item.data(),
+  //       id: item.id,
+  //     };
+  //     setGetTwitt((prev) => [twittObject, ...prev]);
+  //   });
+  // };
+
+  useEffect(() => {
+    // getTwitts();
+    firestore.collection("twitts").onSnapshot((snapshot) => {
+      const twittArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setGetTwitt(twittArray);
+    });
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     await firestore.collection("twitts").add({
-      twitt,
+      text: twitt,
       createdAt: Date.now(),
+      creatorId: userObject.uid,
     });
     setTwitt("");
   };
@@ -17,6 +43,8 @@ function Home(props) {
     } = e;
     setTwitt(value);
   };
+
+  // console.log(getTwitt);
 
   return (
     <div>
@@ -30,6 +58,13 @@ function Home(props) {
         />
         <input type="submit" value="Twitt" />
       </form>
+      <div>
+        {getTwitt.map((item) => (
+          <div key={item.id}>
+            <h4>{item.text}</h4>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

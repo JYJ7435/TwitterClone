@@ -5,7 +5,7 @@ import Auth from "./routes/Auth";
 import Home from "./routes/Home";
 import Profile from "./routes/Profile";
 
-function Routers({ isLoggedIn }) {
+function Routers({ isLoggedIn, userObject }) {
   return (
     <Router>
       {isLoggedIn && <Navigation />}
@@ -13,7 +13,7 @@ function Routers({ isLoggedIn }) {
         {isLoggedIn ? (
           <>
             <Route exact path="/">
-              <Home />
+              <Home userObject={userObject} />
             </Route>
             <Route exact path="/profile">
               <Profile />
