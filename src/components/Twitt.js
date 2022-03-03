@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firestore } from "../firebase";
+import { firestore, storageService } from "../firebase";
 
 function Twitt({ twittObj, isOwner }) {
   const [edit, setEdit] = useState(false);
@@ -9,6 +9,9 @@ function Twitt({ twittObj, isOwner }) {
     if (confirm) {
       //Delete Twitt
       await firestore.doc(`twitts/${twittObj.id}`).delete();
+      if (twittObj.attachmentURL) {
+        await storageService.refFromURL(twittObj.attachmentURL).delete();
+      }
     }
   };
 
@@ -50,6 +53,14 @@ function Twitt({ twittObj, isOwner }) {
       ) : (
         <>
           <h4>{twittObj.text}</h4>
+          {twittObj.attachmentURL && (
+            <img
+              src={twittObj.attachmentURL}
+              width="50px"
+              height="50px"
+              alt="attachmentImage"
+            />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Twitt</button>
