@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../firebase";
+import Twitt from "../Twitt";
 
 function Home({ userObject }) {
   const [twitt, setTwitt] = useState("");
@@ -60,9 +61,11 @@ function Home({ userObject }) {
       </form>
       <div>
         {getTwitt.map((item) => (
-          <div key={item.id}>
-            <h4>{item.text}</h4>
-          </div>
+          <Twitt
+            key={item.id}
+            twittObj={item}
+            isOwner={item.creatorId === userObject.uid}
+          />
         ))}
       </div>
     </div>
