@@ -5,10 +5,10 @@ import Auth from "./routes/Auth";
 import Home from "./routes/Home";
 import Profile from "./routes/Profile";
 
-function Routers({ isLoggedIn, userObject }) {
+function Routers({ refreshUser, isLoggedIn, userObject }) {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObject={userObject} />}
       <Switch>
         {isLoggedIn ? (
           <>
@@ -16,7 +16,7 @@ function Routers({ isLoggedIn, userObject }) {
               <Home userObject={userObject} />
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile refreshUser={refreshUser} userObject={userObject} />
             </Route>
           </>
         ) : (

@@ -79,6 +79,7 @@ function Home({ userObject }) {
   const onClearAttachment = () => {
     setAttachment(null);
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>

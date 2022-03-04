@@ -9,19 +9,44 @@ function App() {
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
+      setIsLoggedIn(true);
       if (user) {
-        setIsLoggedIn(true);
-        setUserObject(user);
+        setUserObject({
+          displayName: user.displayName
+            ? user.displayName
+            : user.email.split("@")[0],
+          email: user.email,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
       } else {
         setIsLoggedIn(false);
+        setUserObject(null);
       }
       setInit(true);
     });
   }, []);
+
+  const refreshUser = () => {
+    const user = firebaseAuth.currentUser;
+    setUserObject({
+      displayName: user.displayName
+        ? user.displayName
+        : user.email.split("@")[0],
+      uid: user.uid,
+      email: user.email,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
+
   return (
     <>
       {init ? (
-        <Routers isLoggedIn={isLoggedIn} userObject={userObject} />
+        <Routers
+          refreshUser={refreshUser}
+          isLoggedIn={isLoggedIn}
+          userObject={userObject}
+        />
       ) : (
         "Initializing..."
       )}

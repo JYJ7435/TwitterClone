@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navigation(props) {
+function Navigation({ userObject }) {
   return (
     <nav>
       <ul>
@@ -9,7 +9,7 @@ function Navigation(props) {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile">{userObject?.displayName}'s Profile</Link>
         </li>
       </ul>
     </nav>
