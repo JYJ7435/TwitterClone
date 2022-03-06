@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { firestore, storageService } from "../firebase";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 function TwittForm({ userObject }) {
   const [attachment, setAttachment] = useState();
   const [twitt, setTwitt] = useState("");
 
   const onSubmit = async (e) => {
+    if (twitt === "") {
+      return;
+    }
     e.preventDefault();
     let attachmentURL = "";
     if (attachment) {
@@ -53,24 +57,44 @@ function TwittForm({ userObject }) {
   };
 
   const onClearAttachment = () => {
-    setAttachment(null);
+    setAttachment("");
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="factoryForm">
+      <div className="factoryInput__container">
+        <input
+          className="factoryInput__input"
+          value={twitt}
+          onChange={onChange}
+          type="text"
+          placeholder="What's on your mind?"
+          maxLength={120}
+        />
+        <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+      </div>
+      <label htmlFor="attach-file" className="factoryInput__label">
+        <span>Add photos</span>
+        <FaPlus />
+      </label>
       <input
-        value={twitt}
-        onChange={onChange}
-        type="text"
-        placeholder="What's on your mind?"
-        maxLength={120}
+        id="attach-file"
+        type="file"
+        accept="image/*"
+        onChange={onFileChange}
+        style={{ opacity: 0 }}
       />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="Twitt" />
       {attachment && (
-        <div>
-          <img src={attachment} width="50px" height="50px" alt="images" />
-          <button onClick={onClearAttachment}>Clear</button>
+        <div className="factoryForm__attachment">
+          <img
+            src={attachment}
+            style={{ backgroundImage: attachment }}
+            alt="images"
+          />
+          <button className="factoryForm__clear" onClick={onClearAttachment}>
+            <span>Remove</span>
+            <FaTimes />
+          </button>
         </div>
       )}
     </form>

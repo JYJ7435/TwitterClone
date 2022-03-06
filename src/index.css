@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,328 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  color: #000;
+  background-color: #000;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  background-color: #fff;
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+form {
+  width: 100%;
+}
+
+input::placeholder {
+  opacity: 0.9;
+}
+
+.container {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
+
+.formBtn {
+  cursor: pointer;
+  width: 100%;
+  padding: 7px 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  background-color: #04aaff;
+}
+
+.cancelBtn {
+  cursor: pointer;
+  background-color: #eb5d44;
+}
+
+.icons {
+  font-size: 50px;
+  color: #04AAFF;
+}
+
+/* Profile Page */
+
+.profileForm {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  padding-bottom: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logOut {
+  margin-top: 50px;
+}
+
+/* Navigation */
+.navlist {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.navitem:first-child {
+  margin-right: 10px;
+}
+
+.navitem span {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.navitem .icons {
+  transition: all 300ms ease-in;
+}
+
+.navitem .icons:hover {
+  transform: scale(1.2);
+}
+
+/* Twitter Form */
+
+.factoryForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.factoryInput__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.factoryInput__input {
+  flex: 1;
+  height: 40px;
+  padding: 0px 20px;
+  color: #000;
+  border: 1px solid #04aaff;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.factoryInput__arrow {
+  position: absolute;
+  right: 0;
+  background-color: #04aaff;
+  height: 40px;
+  width: 40px;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.factoryInput__label {
+  color: #04aaff;
+  cursor: pointer;
+  transition: all 300ms ease-in;
+}
+
+.factoryInput__label span {
+  font-size: 12px;
+  margin-right: 10px;
+}
+.factoryInput__label:hover {
+  transform: scale(1.2);
+}
+
+.factoryForm__attachment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.factoryForm__attachment img {
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+}
+
+.factoryForm__clear {
+  margin-top: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #eb5d44;
+
+}
+
+.factoryForm__clear span {
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+/* Twitt */
+
+.twittEdit .formBtn {
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.twitt {
+  margin-bottom: 20px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.twitt h4 {
+  font-size: 14px;
+}
+
+.twitt img {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.twitt__actions {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.twitt__actions span {
+  cursor: pointer;
+}
+
+.twitt__actions span:first-child {
+  margin-right: 10px;
+}
+
+.twitt__actions span:hover {
+  color: #eb5d44;
+}
+
+/* Auth */
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.authBtns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 320px;
+}
+
+.authBtn {
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 0px;
+  font-size: 12px;
+  text-align: center;
+  width: 150px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.authBtn:hover {
+  background-color: #04aaff;
+  color: #fff;
+}
+
+/* AuthForm */
+.authInput {
+  max-width: 320px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.authSubmit {
+  text-align: center;
+  background: #04aaff;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.authError {
+  color: #eb5d44;
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.authSwitch {
+  color: #04aaff;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  display: block;
+  font-size: 12px;
+  text-decoration: underline;
+  transition: all 200ms ease-in;
+}
+
+.authSwitch:hover {
+  transform: scale(1.2);
 }

@@ -1,15 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaTwitter, FaUserEdit } from "react-icons/fa";
 
 function Navigation({ userObject }) {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
+      <ul className="navlist">
+        <li className="navitem">
+          <Link to="/">
+            <FaTwitter className="icons" />
+          </Link>
         </li>
-        <li>
-          <Link to="/profile">{userObject?.displayName}'s Profile</Link>
+        <li className="navitem">
+          <Link to="/profile">
+            <FaUserEdit className="icons" />
+            <span>{userObject?.displayName}'s Profile</span>
+          </Link>
         </li>
       </ul>
     </nav>

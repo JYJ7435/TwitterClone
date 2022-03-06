@@ -10,20 +10,33 @@ function Routers({ refreshUser, isLoggedIn, userObject }) {
     <Router>
       {isLoggedIn && <Navigation userObject={userObject} />}
       <Switch>
-        {isLoggedIn ? (
-          <>
-            <Route exact path="/">
-              <Home userObject={userObject} />
-            </Route>
-            <Route exact path="/profile">
-              <Profile refreshUser={refreshUser} userObject={userObject} />
-            </Route>
-          </>
-        ) : (
-          <Route exact path="/">
-            <Auth />
-          </Route>
-        )}
+        <>
+          {isLoggedIn ? (
+            <div
+              style={{
+                maxWidth: 890,
+                width: "100%",
+                margin: "0 auto",
+                marginTop: 80,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Route exact path="/">
+                <Home userObject={userObject} />
+              </Route>
+              <Route exact path="/profile">
+                <Profile refreshUser={refreshUser} userObject={userObject} />
+              </Route>
+            </div>
+          ) : (
+            <>
+              <Route exact path="/">
+                <Auth />
+              </Route>
+            </>
+          )}
+        </>
       </Switch>
     </Router>
   );

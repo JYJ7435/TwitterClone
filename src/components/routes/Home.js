@@ -30,9 +30,9 @@ function Home({ userObject }) {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <TwittForm userObject={userObject} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {getTwitt.map((item) => (
           <Twitt
             key={item.id}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { firestore, storageService } from "../firebase";
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
 
 function Twitt({ twittObj, isOwner }) {
   const [edit, setEdit] = useState(false);
@@ -35,37 +36,40 @@ function Twitt({ twittObj, isOwner }) {
     setNewTwitt(value);
   };
   return (
-    <div>
+    <div className="twitt">
       {edit ? (
         <>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="container twittEdit">
             <input
               type="text"
               placeholder="Edit your Twitt"
               value={newTwitt}
+              autoFocus
               required
               onChange={onChange}
+              className="formInput"
             />
-            <input type="submit" value="Update Twitt" />
+            <input type="submit" value="Update Twitt" className="formBtn" />
           </form>
-          <button onClick={toggleEdit}>Cancel</button>
+          <button onClick={toggleEdit} className="formBtn cancelBtn">
+            Cancel
+          </button>
         </>
       ) : (
         <>
           <h4>{twittObj.text}</h4>
           {twittObj.attachmentURL && (
-            <img
-              src={twittObj.attachmentURL}
-              width="50px"
-              height="50px"
-              alt="attachmentImage"
-            />
+            <img src={twittObj.attachmentURL} alt="attachmentImage" />
           )}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete Twitt</button>
-              <button onClick={toggleEdit}>Edit Twitt</button>
-            </>
+            <div className="twitt__actions">
+              <span onClick={onDeleteClick}>
+                <FaTrash />
+              </span>
+              <span onClick={toggleEdit}>
+                <FaPencilAlt />
+              </span>
+            </div>
           )}
         </>
       )}

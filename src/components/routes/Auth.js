@@ -1,5 +1,6 @@
 import React from "react";
 import { firebaseAuth, githubProvider, googleProvider } from "../../firebase";
+import { FaTwitter, FaGoogle, FaGithub } from "react-icons/fa";
 import AuthForm from "../AuthForm";
 
 function Auth() {
@@ -17,18 +18,18 @@ function Auth() {
     await firebaseAuth.signInWithPopup(provider);
   };
   return (
-    <>
-      <div>Auth</div>
+    <div className="authContainer">
+      <FaTwitter className="icons" style={{ marginBottom: 30 }} />
       <AuthForm />
-      <div>
-        <button onClick={onSocialClick} name="google">
-          Continue with Google
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="google" className="authBtn">
+          Continue with Google <FaGoogle />
         </button>
-        <button onClick={onSocialClick} name="github">
-          Continue with GitHub
+        <button onClick={onSocialClick} name="github" className="authBtn">
+          Continue with GitHub <FaGithub />
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
