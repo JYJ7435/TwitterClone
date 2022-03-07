@@ -58,6 +58,7 @@ function AuthForm() {
           required
           value={password}
           onChange={onChange}
+          autoComplete="new-password"
           className="authInput"
         />
         <input
